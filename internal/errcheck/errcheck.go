@@ -223,6 +223,10 @@ type visitor struct {
 }
 
 func (v *visitor) fullName(call *ast.CallExpr) (string, bool) {
+	if ident, ok := call.Fun.(*ast.Ident); ok {
+		return ident.Name, true
+	}
+
 	sel, ok := call.Fun.(*ast.SelectorExpr)
 	if !ok {
 		return "", false
