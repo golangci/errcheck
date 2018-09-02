@@ -1,4 +1,4 @@
-module "github.com/kisielk/errcheck"
+module "github.com/golangci/errcheck"
 
 require (
 	"github.com/kisielk/gotool" v1.0.0
