@@ -2,6 +2,7 @@ package golangci
 
 import (
 	"regexp"
+	"strings"
 
 	"github.com/golangci/errcheck/internal/errcheck"
 	"golang.org/x/tools/go/loader"
@@ -62,7 +63,7 @@ func RunWithConfig(program *loader.Program, c *Config) ([]Issue, error) {
 
 	if err := checker.CheckProgram(program); err != nil {
 		if e, ok := err.(*errcheck.UncheckedErrors); ok {
-			return makeIssues(e), nil
+			return makeIssues(e, checker.WithoutTests), nil
 		}
 		if err == errcheck.ErrNoGoFiles {
 			return nil, nil
@@ -75,9 +76,12 @@ func RunWithConfig(program *loader.Program, c *Config) ([]Issue, error) {
 	return nil, nil
 }
 
-func makeIssues(e *errcheck.UncheckedErrors) []Issue {
+func makeIssues(e *errcheck.UncheckedErrors, withoutTests bool) []Issue {
 	var ret []Issue
 	for _, uncheckedError := range e.Errors {
+		if withoutTests && strings.Contains(uncheckedError.Pos.Filename, "_test.go") {
+			continue
+		}
 		ret = append(ret, Issue(uncheckedError))
 	}
 
