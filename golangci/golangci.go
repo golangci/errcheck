@@ -3,7 +3,7 @@ package golangci
 import (
 	"regexp"
 
-	"github.com/golangci/errcheck/internal/errcheck"
+	"github.com/kisielk/errcheck/internal/errcheck"
 	"golang.org/x/tools/go/loader"
 )
 

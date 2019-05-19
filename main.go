@@ -10,7 +10,7 @@ import (
 	"runtime"
 	"strings"
 
-	"github.com/golangci/errcheck/internal/errcheck"
+	"github.com/kisielk/errcheck/internal/errcheck"
 	"github.com/kisielk/gotool"
 )
 

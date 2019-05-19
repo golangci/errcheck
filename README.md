@@ -6,7 +6,7 @@ errcheck is a program for checking for unchecked errors in go programs.
 
 ## Install
 
-    go get -u github.com/golangci/errcheck
+    go get -u github.com/kisielk/errcheck
 
 errcheck requires Go 1.6 or newer and depends on the package go/loader from the golang.org/x/tools repository.
 
@@ -14,7 +14,7 @@ errcheck requires Go 1.6 or newer and depends on the package go/loader from the 
 
 For basic usage, just give the package path of interest as the first argument:
 
-    errcheck github.com/golangci/errcheck/testdata
+    errcheck github.com/kisielk/errcheck/testdata
 
 To check all packages beneath the current directory:
 
@@ -101,7 +101,7 @@ However, you can use errcheck on packages that depend on those which use cgo. In
 order for this to work you need to `go install` the cgo dependencies before running
 errcheck on the dependent packages.
 
-See https://github.com/golangci/errcheck/issues/16 for more details.
+See https://github.com/kisielk/errcheck/issues/16 for more details.
 
 ## Exit Codes
 
